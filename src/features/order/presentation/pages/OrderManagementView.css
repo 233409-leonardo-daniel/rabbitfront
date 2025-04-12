@@ -1,0 +1,78 @@
+.container {
+  max-width: 100%; /* Cambiado para ocupar casi todo el ancho */
+  margin: 0 auto;
+  padding: 16px;
+  background-color: #f7fafc; /* Color gris claro */
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 16px;
+  color: white;
+  background-color: #8B4513; /* Color café */
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.label {
+  margin-bottom: 8px;
+}
+
+.select,
+.input,
+.button {
+  border: 1px solid #ccc;
+  padding: 8px;
+  border-radius: 4px;
+  width: 50%; /* Ajustar ancho */
+}
+
+.input {
+  width: 25%; /* Ajustar ancho para cantidad */
+}
+
+.button {
+  background-color: #4299e1; /* Color azul */
+  color: white;
+  padding: 8px 16px; /* Relleno consistente */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%; /* Ancho completo para todos los botones */
+  max-width: 200px; /* Ancho máximo para mantener un tamaño uniforme */
+  display: inline-block; /* Asegura que los botones se alineen correctamente */
+  text-align: center; /* Centra el texto dentro del botón */
+}
+
+.button:hover {
+  background-color: #3182ce; /* Color azul más oscuro al pasar el mouse */
+}
+
+.error {
+  color: red;
+  margin-top: 8px;
+}
+
+.product-card, .order-card {
+  border: 1px solid #ccc;
+  padding: 16px;
+  border-radius: 4px;
+  background-color: white;
+  margin-bottom: 16px; /* Espaciado entre tarjetas */
+  flex: 1; /* Permite que las tarjetas crezcan */
+}
+
+.small-button {
+  font-size: 12px; /* Tamaño de fuente más pequeño */
+  padding: 4px 8px; /* Relleno más pequeño */
+}
+
+/* Nueva regla para el contenedor de productos */
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 columnas */
+  gap: 16px; /* Espaciado entre columnas */
+}
