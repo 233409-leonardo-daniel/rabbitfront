@@ -4,21 +4,17 @@ import { OrderViewModel } from '../viewmodels/OrderViewModel';
 import { ProductViewModel } from '../../../products/presentation/viewmodels/ProductViewModel';
 import './OrderManagementView.css';
 
-interface OrderManagementViewProps {
-  viewModel: OrderViewModel;
-}
-
-export const OrderManagementView = observer(({ viewModel }: OrderManagementViewProps) => {
+export const OrderManagementView = observer(() => {
+  const viewModel = new OrderViewModel();
   const [productViewModel] = useState(() => new ProductViewModel());
   const [isLoading, setIsLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
-  const [orderStatus, setOrderStatus] = useState('');
 
   useEffect(() => {
-    const loadData = async () => {
+    const loadData = () => {
       setIsLoading(true);
       try {
-        await Promise.all([
+        Promise.all([
           viewModel.loadOrders(),
           productViewModel.loadProducts()
         ]);
@@ -31,30 +27,6 @@ export const OrderManagementView = observer(({ viewModel }: OrderManagementViewP
 
     loadData();
   }, [viewModel, productViewModel]);
-
-  useEffect(() => {
-    const ws = new WebSocket('ws://localhost:8083/ws');
-
-    ws.onopen = () => {
-      console.log('Conectado al servidor WebSocket');
-    };
-
-    ws.onmessage = (event) => {
-      setOrderStatus(event.data);
-    };
-
-    ws.onerror = (error) => {
-      console.error('WebSocket error:', error);
-    };
-
-    ws.onclose = () => {
-      console.log('Conexión WebSocket cerrada');
-    };
-
-    return () => {
-      ws.close();
-    };
-  }, []);
 
   const handleProductChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedProduct = productViewModel.products.find(
@@ -193,8 +165,6 @@ export const OrderManagementView = observer(({ viewModel }: OrderManagementViewP
       >
         Ver Órdenes
       </button>
-
-      {orderStatus && <p>{orderStatus}</p>}
     </div>
   );
 });

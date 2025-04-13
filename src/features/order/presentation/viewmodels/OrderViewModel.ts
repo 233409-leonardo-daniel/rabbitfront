@@ -94,11 +94,7 @@ export class OrderViewModel {
 
                 const response = await this.createOrderUseCase.execute(order);
                 if (response) {
-                   
-                    const ws = new WebSocket('ws://localhost:8083/ws');
-                    ws.onopen = () => {
-                        ws.send(`Orden creada: ${response.id}`);
-                    };
+                    
                 }
             } catch (error) {
                 this.error = (error instanceof Error) ? error.message : "Error al crear la orden";

@@ -41,7 +41,7 @@ export class OrderRepository {
     }
 
     async getAll(): Promise<OrderDTO[]> {
-        const response = await fetch('http://localhost:8080/orders', {
+        const response = await fetch('http://localhost:8082/orders', {
             method: 'GET',
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
