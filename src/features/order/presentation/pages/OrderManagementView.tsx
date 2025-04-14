@@ -5,16 +5,16 @@ import { ProductViewModel } from '../../../products/presentation/viewmodels/Prod
 import './OrderManagementView.css';
 
 export const OrderManagementView = observer(() => {
-  const viewModel = new OrderViewModel();
+  const [viewModel] = useState(() => new OrderViewModel());
   const [productViewModel] = useState(() => new ProductViewModel());
   const [isLoading, setIsLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
-    const loadData = () => {
+    const loadData = async () => {
       setIsLoading(true);
       try {
-        Promise.all([
+        await Promise.all([
           viewModel.loadOrders(),
           productViewModel.loadProducts()
         ]);
@@ -157,14 +157,6 @@ export const OrderManagementView = observer(() => {
           </div>
         ))}
       </div>
-
-      {/* Botón para ver la lista de órdenes al final */}
-      <button 
-        className="button small-button mt-4" 
-        onClick={() => window.location.href = '/order-list'}
-      >
-        Ver Órdenes
-      </button>
     </div>
   );
 });
